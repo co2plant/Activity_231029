@@ -2,6 +2,7 @@ package kr.ac.wku.activity_231029
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -30,6 +31,16 @@ class MainActivity : AppCompatActivity() {
             //edtNumber에 적힌 값도 Int로 변환해서 첨부
             val inputNumber = binding.edtNumber.text.toString().toInt()
             myIntent.putExtra("number", inputNumber)
+            startActivity(myIntent)
+        }
+
+        binding.btnPhoneCall.setOnClickListener{
+            val inputPhoneNum = binding.edtPhoneCall.text.toString()
+
+            val myUri = Uri.parse("tel:${inputPhoneNum}")
+
+            val myIntent = Intent(Intent.ACTION_DIAL, myUri)
+
             startActivity(myIntent)
         }
     }
